@@ -1,0 +1,30 @@
+/* DashLayout.css — relevant parts */
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f8fafc;
+  font-family: "Inter", sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* default (collapsed) — matches your .sidebar width: 60px */
+.dashboard-layout.sidebar-collapsed .dashboard-content {
+  margin-left: 60px;
+}
+
+/* expanded */
+.dashboard-layout.sidebar-expanded .dashboard-content {
+  margin-left: 200px; /* match .sidebar.expanded width */
+}
+
+/* fallback for older CSS */
+.dashboard-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f9fafb;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease;
+}

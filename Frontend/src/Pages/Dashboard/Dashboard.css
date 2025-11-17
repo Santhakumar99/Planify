@@ -1,0 +1,23 @@
+.layout {
+  display: flex;
+}
+
+/* Adjust based on your sidebar width */
+.content-area {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+  transition: 0.3s ease;
+}
+
+/* When Sidebar expands */
+.sidebar.open ~ .content-area {
+  margin-left: 230px;
+  width: calc(100% - 230px);
+}
+
+/* Page content body */
+.page-body {
+  padding: 25px 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}

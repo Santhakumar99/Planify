@@ -1,0 +1,84 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+
+  background: #fff;
+  border-right: 1px solid #e6e6e6;
+
+  padding: 15px 10px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Default open */
+.sidebar.open {
+  width: 230px;
+}
+
+/* When collapsed */
+.sidebar.collapsed {
+  width: 70px;
+}
+
+/* Toggle Button */
+.toggle-btn {
+  font-size: 22px;
+  padding: 10px;
+  cursor: pointer;
+  /* margin-bottom: 20px; */
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Menu items */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+
+  color: #444;
+  font-size: 15px;
+}
+
+.menu-item:hover {
+  background: #f0f0f0;
+}
+
+.icon {
+  font-size: 20px;
+  min-width: 22px;
+}
+
+/* Text for expanded menu */
+.menu-text {
+  white-space: nowrap;
+}
+
+/* Hide text when collapsed */
+.sidebar.collapsed .menu-text {
+  display: none;
+}
+.closeSection {
+    display: flex;
+   justify-content: space-between;
+    font-size: x-large;
+    padding: 10px;
+}
+span.appTitle {
+    font-size: 30px;
+    font-weight: 700;
+}

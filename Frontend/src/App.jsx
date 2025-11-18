@@ -88,6 +88,7 @@ import ProtectedRoute from "./Auth/ProtectedRoute";
 import { AuthProvider } from "./Auth/Context";
 import ProtectedLayout from "./Auth/ProtectedLayout";
 import Projects from "./Pages/Projects/Projects";
+import LoginPage1 from "./Pages/Login/loginCopy";
 
 function App() {
   return (
@@ -97,7 +98,7 @@ function App() {
           <Routes>
             {/* Public route */}
             <Route path="/login" element={<LoginPage />} />
-
+  <Route path="/login1" element={<LoginPage1 />} />
             {/* Protected routes */}
             <Route element={<ProtectedLayout />}>
               <Route

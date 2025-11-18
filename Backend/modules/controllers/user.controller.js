@@ -53,3 +53,10 @@ export const getallusers = async(req,res)=>{
     res.status(400).json({message:error.message})
   }
 }
+// export const createUsers=async(req,res)=>{
+//   try {
+//     const {}
+//   } catch (error) {
+    
+//   }
+// }

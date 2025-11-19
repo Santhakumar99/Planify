@@ -8,8 +8,8 @@
 
 /* LEFT SECTION */
 .left-section {
-  flex: 1;
-  padding: 100px 100px 60px 100px;
+  flex: 0.8;
+  padding: 150px 100px 60px 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -95,7 +95,7 @@
 
 /* RIGHT SECTION */
 .right-section {
-  flex: 1;
+  flex: 1.2;
   /* background: #f7fdf7; */
   display: flex;
   justify-content: center;
@@ -131,4 +131,23 @@
   .left-section {
     padding: 40px;
   }
+}
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-input {
+  padding-right: 45px !important; /* space for icon */
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+  z-index: 10;
 }

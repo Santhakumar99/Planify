@@ -1,0 +1,159 @@
+/* MAIN CONTAINER */
+.register-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: #f4f7fb;
+  overflow: hidden;
+}
+
+/* LEFT SECTION */
+.register-left-section {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.register-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #222;
+}
+
+.register-subtitle {
+  font-size: 15px;
+  margin-top: 8px;
+  color: #555;
+}
+
+.register-form {
+  width: 100%;
+  margin-top: 30px;
+}
+
+/* INPUT GROUP */
+.register-input-group {
+  margin-bottom: 18px;
+}
+
+.register-input-group input,
+.register-input-group select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.register-input-group input:focus,
+.register-input-group select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0px 0px 6px rgba(79, 70, 229, 0.35);
+}
+
+/* PASSWORD WRAPPER */
+.register-password-wrapper {
+  position: relative;
+}
+
+.register-password-input {
+  padding-right: 40px !important;
+}
+
+.register-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+
+/* ERROR / SUCCESS MESSAGES */
+.register-error {
+  color: red;
+  padding-top: 4px;
+  font-size: 13px;
+}
+
+.register-success {
+  color: green;
+  padding-top: 4px;
+  font-size: 13px;
+}
+
+/* SUBMIT BUTTON */
+.register-btn {
+  width: 100%;
+  background: #4f46e5;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  margin-top: 10px;
+  transition: 0.3s ease;
+}
+
+.register-btn:hover {
+  background: #3c36c8;
+}
+
+/* FOOTER TEXT */
+.register-footer-text {
+  margin-top: 17px;
+  color: #555;
+  font-size: 15px;
+  text-align: center;
+}
+
+.register-link {
+  color: #4f46e5;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* RIGHT SECTION */
+.register-right-section {
+  flex: 1;
+  background: linear-gradient(135deg, #4f46e5, #6d5dfc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.register-illustration-card {
+  text-align: center;
+  color: white;
+}
+
+.register-illustration {
+  width: 80%;
+  max-width: 380px;
+}
+
+.register-right-text {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .register-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .register-right-section {
+    padding: 40px;
+  }
+}

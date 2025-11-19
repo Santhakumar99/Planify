@@ -23,6 +23,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <div className="toggle-btn">
           {isOpen ? <span className="appTitle">Planify</span> : <span className="appTitle">P</span>}
         </div>
+        <h1>1</h1>
          {/* <div className="iconsection" onClick={toggleSidebar}>
           <FaArrowLeftLong />
         </div> */}

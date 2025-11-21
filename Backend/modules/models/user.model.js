@@ -59,8 +59,6 @@ UserSchema.methods.generateJWT = function() {
   });
   return token;
 };
-
-
     const User = mongoose.model('User', UserSchema)
     // module.exports = User;
     export default User;

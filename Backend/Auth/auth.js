@@ -1,10 +1,10 @@
 
 import jwt from 'jsonwebtoken';
-const User = require('../modules/models/user.model');
+import User from '../modules/models/user.model.js';
 
 async function protect(req, res, next) {
   const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) return res.status(401).json({ message: 'Unauthorized' });
+  if (!authHeader || !authHeader.startsWith('Bearer')) return res.status(401).json({ message: 'Unauthorized' });
 
   const token = authHeader.split(' ')[1];
   try {
@@ -17,4 +17,5 @@ async function protect(req, res, next) {
   }
 }
 
-module.exports = protect;
+const protection = protect;
+export default protection;

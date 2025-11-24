@@ -1,0 +1,370 @@
+/* =========================
+   Project Dashboard - Clean CSS
+   (Fixed card width 360px, grid left aligned,
+    list center limited to 1300px)
+   ========================= */
+
+/* base */
+.proj-dashboard {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #f5f7fb;
+}
+/* Page max width control */
+.page-wrapper {
+  max-width: 1600px;   /* as you required */
+  margin: 0 auto;      /* center the whole page */
+  width: 100%;
+}
+
+/* header */
+.proj-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+/* left buttons group */
+.status-buttons-left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* status buttons */
+.status-btn {
+  background: #fff;
+  border: 1px solid #e6e9ee;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #374151;
+  transition: all 0.12s ease;
+}
+
+.status-btn.active {
+  background: linear-gradient(90deg, #eef2ff, #ecfeff);
+  border-color: #c7d2fe;
+  color: #111827;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.06);
+}
+
+/* right controls */
+.header-controls-right,
+.header-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  height: 40px;
+  width: 40px;
+  border-radius: 8px;
+  border: 1px solid #e6e9ee;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.icon-btn.active {
+  border-color: #c7d2fe;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.06);
+  color: #3b82f6;
+}
+
+.btn-add {
+  padding: 10px 14px;
+  background: #3b82f6;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ================
+   GRID (fixed-width cards, left aligned)
+   ================ */
+
+.proj-content.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start; /* LEFT aligned always */
+  margin-top: 6px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* FIXED CARD WIDTH 360px */
+.project-card {
+  width: 360px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #eef2f6;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* grid card internals */
+.card-top {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.card-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f3f4f6;
+}
+.card-body {
+  text-align: center;
+}
+.card-title {
+  font-size: 20px;
+  margin: 6px 0 6px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.15;
+}
+.card-date {
+  color: #6b7280;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.card-tag {
+  display: inline-block;
+  background: #f3f4f6;
+  color: #374151;
+  padding: 6px 10px;
+  border-radius: 14px;
+  font-size: 12px;
+}
+
+/* footer row inside card */
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* members small avatars */
+.member-xs {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef2ff;
+  color: #1e3a8a;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* progress bar */
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #34d399, #10b981);
+  transition: width 0.25s ease;
+}
+
+.btn-view {
+  border: 1px solid #e6e9ee;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* ================
+   LIST view (centered wrapper, limited width)
+   ================ */
+
+.list-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.proj-content.list {
+  width: 100%;
+  max-width: 1300px; /* center-limited width per your choice */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* list row */
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid #eef2f6;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.02);
+}
+
+/* left side avatar + title */
+.row-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+.row-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #f8fafc;
+}
+.row-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+.row-sub {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* center stats + date + members */
+.row-stats {
+  width: 110px;
+  text-align: center;
+}
+.stat-num {
+  font-weight: 700;
+  color: #0f172a;
+}
+.stat-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+.row-date {
+  width: 160px;
+  text-align: center;
+  color: #374151;
+}
+.row-members {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* small member chip for list */
+.member-chip {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef2ff;
+  color: #1e3a8a;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* actions */
+.row-actions {
+  width: 80px;
+  text-align: right;
+}
+
+/* empty */
+.empty {
+  padding: 34px;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* modal placeholder (demo only) */
+.modal-placeholder {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.45);
+  z-index: 2000;
+}
+.modal-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 320px;
+}
+
+/* responsive rules */
+@media (max-width: 1100px) {
+  .project-card {
+    width: 320px;
+  }
+  .proj-content.grid {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 720px) {
+  .project-card {
+    width: 100%;
+  }
+  .proj-content.grid {
+    justify-content: center; /* on small screens center single-column cards */
+  }
+  .list-wrapper {
+    padding: 0 12px;
+  }
+}
+.list-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.proj-content.list {
+  width: 100%;
+  max-width: 1600px;   /* updated from 1300px to 1600px */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}

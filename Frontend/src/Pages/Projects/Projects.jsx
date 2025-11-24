@@ -1,8 +1,9 @@
 import React from 'react'
+import ProjectsDashboard from './ProjectDashboard'
 
 const Projects = () => {
   return (
-    <div>project main</div>
+    <div><ProjectsDashboard/></div>
   )
 }
 

@@ -21,18 +21,39 @@ export default function ProjectsDashboard() {
 
   const [showModal, setShowModal] = useState(false);
   const [editProject, setEditProject] = useState(null);
+  let Userrole = sessionStorage.getItem("Role")
+  const API_URL = import.meta.env.VITE_API_URL;
+  const [membersOptions, setMembersOptions] = useState([]);
 
-  // 🔹 Fetch projects from API
+  const loadMembers = async () => {
+    try {
+      const token = sessionStorage.getItem("token");
+      const res = await axios.get(`${API_URL}/api/user/allusers`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log(res)
+      // Convert API structure → modal structure
+      const formatted = res.data.allUsers.map((u) => ({
+        id: u._id,
+        name: u.name,
+        email: u.email,
+      }));
+      console.log(formatted)
+      setMembersOptions(formatted);
+    } catch (err) {
+      console.error("Failed to load members:", err);
+    }
+  };
+
   const loadProjects = async () => {
     try {
       setLoading(true);
-     const token = sessionStorage.getItem("token"); // or localStorage
-    const res = await axios.get("http://localhost:4000/api/project/allprojects", {
-     headers: {
-    Authorization: `Bearer ${token}`,
-  },
-});
-console.log(res ,"resu")
+      const token = sessionStorage.getItem("token"); // or localStorage
+      const res = await axios.get(`${API_URL}/api/project/allprojects`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setProjects(res.data.projects);
       setLoading(false);
     } catch (err) {
@@ -44,6 +65,7 @@ console.log(res ,"resu")
   // 🔹 Load on mount
   useEffect(() => {
     loadProjects();
+    loadMembers();
   }, []);
 
   // 🔹 Auto refresh every 2 minutes
@@ -98,16 +120,16 @@ console.log(res ,"resu")
               <FaBars />
             </button>
           </div>
-
-          <button
-            className="btn-add"
-            onClick={() => {
-              setEditProject(null);
-              setShowModal(true);
-            }}
-          >
-            <FaPlus className="plus" /> Add Project
-          </button>
+          {Userrole && Userrole != "employee" &&
+            <button
+              className="btn-add"
+              onClick={() => {
+                setEditProject(null);
+                setShowModal(true);
+              }}
+            >
+              <FaPlus className="plus" /> Add Project
+            </button>}
         </div>
       </div>
 
@@ -159,11 +181,12 @@ console.log(res ,"resu")
         <ProjectModal
           visible={showModal}
           initialData={editProject}
+          membersOptions={membersOptions}
           onClose={() => {
             setShowModal(false);
             setEditProject(null);
           }}
-          onSaved={handleProjectSaved} // reload API after saving
+          onSaved={handleProjectSaved}
         />
       )}
     </div>

@@ -2,9 +2,10 @@ import Project from "../models/project.model.js";
 
 export const createProject = async (req, res) => {
     try {
-        const { name, description, members } = req.body;
+      const { name, description, startDate, endDate, members, status } = req.body;
+      console.log(req.body)
         const userId = req.user._id;
-        const project = new Project({ name, description, createdBy: userId, members });
+        const project = new Project({ name, description, createdBy: userId, members,startDate, endDate, status});
         await project.save();
         res.status(200).json({
             status: "success",

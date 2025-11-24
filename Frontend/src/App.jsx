@@ -45,7 +45,7 @@ function App() {
               <Route
                 path="/tasks"
                 element={
-                  <ProtectedRoute allowedRoles={["user", "manager", "Admin"]}>
+                  <ProtectedRoute allowedRoles={["employee", "manager", "Admin"]}>
                     <Projects />
                   </ProtectedRoute>
                 }
@@ -53,7 +53,7 @@ function App() {
               <Route
                 path="/timelog"
                 element={
-                  <ProtectedRoute allowedRoles={["user", "manager", "Admin"]}>
+                  <ProtectedRoute allowedRoles={["employee", "manager", "Admin"]}>
                     <Projects />
                   </ProtectedRoute>
                 }
@@ -61,7 +61,7 @@ function App() {
               <Route
                 path="/users"
                 element={
-                  <ProtectedRoute allowedRoles={["user", "manager", "Admin"]}>
+                  <ProtectedRoute allowedRoles={["employee", "manager", "Admin"]}>
                     <Projects />
                   </ProtectedRoute>
                 }
@@ -69,7 +69,7 @@ function App() {
               <Route
                 path="/settings"
                 element={
-                  <ProtectedRoute allowedRoles={["user", "manager", "Admin"]}>
+                  <ProtectedRoute allowedRoles={["employee", "manager", "Admin"]}>
                     <Projects />
                   </ProtectedRoute>
                 }

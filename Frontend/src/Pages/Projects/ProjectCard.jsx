@@ -1,6 +1,7 @@
 import React from "react";
+import { formatDate } from "../CommonComponents/DateFormat.JSX";
 export default function ProjectCard({ project, viewType = "grid", onView }) {
-  const { name, endDate, members = [], progress = 75, avatar } = project;
+  const { name, endDate, members = [], stats, avatar } = project;
 const renderMembers = (list) => {
   return list.slice(0, 3).map((m, i) => (
     <div key={i} className="member-xs" title={m.name}>
@@ -22,12 +23,12 @@ const renderMembers = (list) => {
         </div>
 
         <div className="row-stats">
-          <div className="stat-num">{Math.round(progress)}</div>
+          <div className="stat-num">{Math.round(stats?.progress)}</div>
           <div className="stat-label">Progress</div>
         </div>
 
         <div className="row-date">
-          <div className="date-value">{endDate ? endDate.split("T")[0] : "-"}</div>
+          <div className="date-value">{endDate ? formatDate(endDate) : "-"}</div>
           <div className="date-sub">Due date</div>
         </div>
 
@@ -49,12 +50,15 @@ const renderMembers = (list) => {
   return (
     <div className="project-card">
       <div className="card-top">
-        <img className="card-avatar" src={avatar} alt={name} />
+        {/* <img className="card-avatar" src={avatar} alt={name} /> */}
+        <div className="avatar-circle sm">
+          {name.charAt(0).toUpperCase()}
+        </div>
       </div>
 
       <div className="card-body">
         <h3 className="card-title">{name}</h3>
-        <div className="card-date">Due to: {endDate}</div>
+        <div className="card-date">Due to: {endDate ? formatDate(endDate) : "-"}</div>
         <div className="card-tag">Development</div>
       </div>
 
@@ -62,7 +66,7 @@ const renderMembers = (list) => {
         <div className="members">{renderMembers(members)}</div>
 
         <div className="progress-bar" aria-hidden>
-          <div className="progress" style={{ width: `${Math.min(100, progress)}%` }} />
+          <div className="progress" style={{ width: `${Math.min(100, stats?.progress)}%` }} />
         </div>
 
         <div className="card-actions">

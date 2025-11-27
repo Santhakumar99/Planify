@@ -14,6 +14,8 @@ import ProtectedLayout from "./Auth/ProtectedLayout";
 import Projects from "./Pages/Projects/Projects";
 import RegistrationPage from "./Pages/Login/registration";
 import Registration from "./Pages/Login/registration";
+import ProjectOverview from "./Pages/Projects/ProjectViews";
+import TasksDashboard from "./Pages/Tasks/TaskDashboard";
 
 function App() {
   return (
@@ -43,10 +45,18 @@ function App() {
                 }
               />
               <Route
+                path="/projects/:id"
+                element={
+                  <ProtectedRoute allowedRoles={["user", "manager", "Admin"]}>
+                    <ProjectOverview />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
                 path="/tasks"
                 element={
                   <ProtectedRoute allowedRoles={["employee", "manager", "Admin"]}>
-                    <Projects />
+                    <TasksDashboard />
                   </ProtectedRoute>
                 }
               />

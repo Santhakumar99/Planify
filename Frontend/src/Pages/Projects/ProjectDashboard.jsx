@@ -4,15 +4,21 @@ import ProjectModal from "./ProjectModal";
 import "../Projects/ProjectDashboard.css";
 import { FaThLarge, FaBars, FaPlus } from "react-icons/fa";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const STATUS_BUTTONS = [
   { key: "all", label: "All Projects" },
-  { key: "active", label: "Active Projects" },
+  { key: "in-progress", label: "Active Projects" },
+  { key: "todo", label: "Upcoming Projects" },
   { key: "completed", label: "Completed Projects" },
-  { key: "closed", label: "Closed Projects" },
 ];
 
 export default function ProjectsDashboard() {
+
+  const navigate = useNavigate();
+
+  const openProjectDetails = (id) => {
+    navigate(`/projects/${id}`);
+  };
   const [viewType, setViewType] = useState("grid");
   const [statusFilter, setStatusFilter] = useState("all");
 
@@ -146,6 +152,7 @@ export default function ProjectsDashboard() {
                 key={p._id}
                 project={p}
                 viewType="grid"
+                onView={() => openProjectDetails(p._id)}
                 onEdit={() => {
                   setEditProject(p);
                   setShowModal(true);
@@ -165,6 +172,7 @@ export default function ProjectsDashboard() {
                   key={p._id}
                   project={p}
                   viewType="list"
+                  onView={() => openProjectDetails(p._id)}
                   onEdit={() => {
                     setEditProject(p);
                     setShowModal(true);

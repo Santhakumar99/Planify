@@ -1,0 +1,448 @@
+/* ---- Layout ---- */
+.project-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: auto;
+  padding: 20px 30px;
+  font-family: "Inter", sans-serif;
+}
+
+/* ---- Header ---- */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.project-title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.project-subtitle {
+  color: #666;
+  margin: 4px 0 12px;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.tag.yellow {
+  background: #fff8d1;
+  color: #b99600;
+}
+
+.tag.red {
+  background: #ffd6d6;
+  color: #c80000;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.label {
+  font-size: 12px;
+  color: #777;
+}
+.value {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ---- Stats Grid ---- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 18px;
+  border-radius: 10px;
+}
+
+.stat-label {
+  color: #777;
+  font-size: 13px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #eee;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
+/* .progress-fill {
+  height: 100%;
+  width: 65%;
+  background: #000;
+  border-radius: 4px;
+} */
+.progress-fill {
+  height: 100%;
+  background: #007bff;
+  border-radius: 4px;
+  transition: width 0.4s ease-in-out;
+}
+
+.tiny {
+  font-size: 12px;
+  color: #666;
+}
+
+.avatars img {
+  border-radius: 50%;
+  margin-right: -8px;
+  border: 2px solid white;
+}
+
+/* ---- Tabs ---- */
+.tabs {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  font-size: 15px;
+  padding-bottom: 8px;
+  cursor: pointer;
+  color: #555;
+}
+
+.tab.active {
+  border-bottom: 2px solid #000;
+  color: #000;
+  font-weight: 600;
+}
+
+/* ---- Main Content Grid ---- */
+/* .content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+} */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+/* ---- Description Section ---- */
+.content-section {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+.section-subtitle {
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.description {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.two-col {
+  display: flex;
+  gap: 40px;
+}
+
+.two-col h4 {
+  margin-bottom: 10px;
+}
+
+/* ---- Details Card ---- */
+.details-card {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+.details-item {
+  margin-bottom: 18px;
+}
+
+.d-label {
+  font-size: 13px;
+  color: #777;
+}
+
+.manager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.manager img {
+  border-radius: 50%;
+}
+.team-members {
+  padding: 20px;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+.members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.member-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px;
+}
+
+.avatar-circle {
+  width: 35px;
+  height: 35px;
+  background: #4a90e2;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: 600;
+}
+
+.member-name {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.more-members {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+h2.header-text {
+  margin: 10px;
+}
+
+
+
+/* === Modern Stats Grid === */
+.stats-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.stat-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #eee;
+  transition: 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.stat-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.stat-header {
+  font-size: 14px;
+  font-weight: 600;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.stat-big {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* Modern Smooth Progress Bar */
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #eaeaea;
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill-modern {
+  height: 8px;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #4d9fff, #006aff);
+  transition: width 0.4s ease;
+}
+
+.stat-sub {
+  font-size: 12px;
+  color: #555;
+  margin-top: 5px;
+}
+/* Modern Card */
+.info-card {
+  background: #fff;
+  padding: 22px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.03);
+  margin-bottom: 20px;
+}
+
+.info-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Info Items */
+.info-item {
+  margin-bottom: 16px;
+}
+
+.label {
+  font-size: 13px;
+  color: #888;
+}
+
+.value {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 3px;
+}
+
+/* Member Rows */
+.member-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* margin: 8px 0; */
+  margin: 15px 0;
+  padding: 10px;
+}
+
+.avatar-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #3a86ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.avatar-circle.sm {
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+}
+
+/* More Members */
+.more-members {
+  font-size: 14px;
+  color: #3a86ff;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.member-name {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.no-members {
+  color: #888;
+  font-size: 14px;
+}
+
+/* Container for both buttons */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+/* Base button styling */
+.btn-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+  line-height: 1; /* FIX: prevents strange text height */
+}
+
+/* Icon inside button */
+.btn-action .icon {
+  font-size: 16px;
+  display: flex;    /* FIX alignment */
+  align-items: center;
+}
+
+/* Edit button */
+.btn-action.edit {
+  background: #e3f0ff;
+  color: #007bff;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.btn-action.edit:hover {
+  background: #007bff;
+  color: white;
+}
+
+/* Delete button */
+.btn-action.delete {
+  background: #ffe6e6;
+  color: #ff4d4f;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.btn-action.delete:hover {
+  background: #ff4d4f;
+  color: white;
+}

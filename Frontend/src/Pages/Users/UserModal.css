@@ -1,0 +1,92 @@
+/* MATCHES ProjectModal.css EXACTLY */
+.user-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 24, 39, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.user-modal {
+  width: 820px;
+  max-width: 95%;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.user-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.user-modal-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.user-close-btn {
+  font-size: 22px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #707d87;
+}
+
+/* Form fields */
+.um-field {
+  margin-bottom: 16px;
+}
+
+.um-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4b5864;
+}
+
+.um-input,
+.um-select,
+.um-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #dce3eb;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Buttons */
+.um-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.um-btn-cancel {
+  background: #f1f4f6;
+  padding: 10px 18px;
+  border-radius: 8px;
+}
+
+.um-btn-primary {
+  background: #4d86ff;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(77, 134, 255, 0.25);
+}

@@ -16,6 +16,7 @@ import RegistrationPage from "./Pages/Login/registration";
 import Registration from "./Pages/Login/registration";
 import ProjectOverview from "./Pages/Projects/ProjectViews";
 import TasksDashboard from "./Pages/Tasks/TaskDashboard";
+import UsersPage from "./Pages/Users/UserPage";
 
 function App() {
   return (
@@ -72,7 +73,7 @@ function App() {
                 path="/users"
                 element={
                   <ProtectedRoute allowedRoles={["employee", "manager", "Admin"]}>
-                    <Projects />
+                    <UsersPage />
                   </ProtectedRoute>
                 }
               />

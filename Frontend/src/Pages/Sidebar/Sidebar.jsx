@@ -44,12 +44,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <FiFolder className="icon" />
             {isOpen && <span className="menu-text">Tasks</span>}
           </NavLink>
-        <NavLink to="/timelog" className="menu-item">
+        {/* <NavLink to="/timelog" className="menu-item">
           <FiClock className="icon" />
           {isOpen && <span className="menu-text">Time Log</span>}
-        </NavLink>
+        </NavLink> */}
         {user && user?.role == "manager" &&
-          <NavLink to="/login1" className="menu-item">
+          <NavLink to="/users" className="menu-item">
             <FiUsers className="icon" />
             {isOpen && <span className="menu-text">Users</span>}
           </NavLink>

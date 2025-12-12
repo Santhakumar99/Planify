@@ -89,14 +89,79 @@ export const createProject = async (req, res) => {
 //       res.status(500).json({ status: "error", message: error.message });
 //     }
 //   };
+// export const updateProject = async (req, res) => {
+//   try {
+//     const projectId = req.params.id;
+//     const userId = req.user._id;
+
+//     // Find project
+//     const project = await Project.findById(projectId);
+
+//     if (!project) {
+//       return res.status(404).json({
+//         status: "error",
+//         message: "Project not found",
+//       });
+//     }
+
+//     // Permission: only creator can update
+//     if (project.createdBy.toString() !== userId.toString()) {
+//       return res.status(403).json({
+//         status: "error",
+//         message: "You are not allowed to update this project",
+//       });
+//     }
+
+//     // Update only valid fields
+//     const allowedFields = [
+//       "name",
+//       "description",
+//       "startDate",
+//       "endDate",
+//       "comment",
+//       "status",
+//       // "budget",
+//       "members",
+//     ];
+
+//     allowedFields.forEach((field) => {
+//       if (req.body[field] !== undefined) {
+//         project[field] = req.body[field];
+//       }
+//     });
+
+//     // Fix members[] (FormData arrays come as strings or arrays)
+//     if (Array.isArray(req.body["members[]"])) {
+//       project.members = req.body["members[]"];
+//     } else if (req.body["members[]"]) {
+//       project.members = [req.body["members[]"]];
+//     }
+
+//     await project.save();
+
+//     return res.status(200).json({
+//       status: "success",
+//       message: "Project updated successfully",
+//       project,
+//     });
+
+//   } catch (error) {
+//     console.error("UPDATE PROJECT ERROR:", error);
+//     return res.status(500).json({
+//       status: "error",
+//       message: error.message,
+//     });
+//   }
+// };
 export const updateProject = async (req, res) => {
   try {
     const projectId = req.params.id;
     const userId = req.user._id;
 
+    console.log("Incoming body:", req.body);
+
     // Find project
     const project = await Project.findById(projectId);
-
     if (!project) {
       return res.status(404).json({
         status: "error",
@@ -104,7 +169,7 @@ export const updateProject = async (req, res) => {
       });
     }
 
-    // Permission: only creator can update
+    // Permission check: only creator can update
     if (project.createdBy.toString() !== userId.toString()) {
       return res.status(403).json({
         status: "error",
@@ -112,29 +177,19 @@ export const updateProject = async (req, res) => {
       });
     }
 
-    // Update only valid fields
-    const allowedFields = [
-      "name",
-      "description",
-      "startDate",
-      "endDate",
-      "comment",
-      "status",
-      // "budget",
-      "members",
-    ];
+    // Update simple fields
+    project.name = req.body.name || project.name;
+    project.description = req.body.description || project.description;
+    project.startDate = req.body.startDate || project.startDate;
+    project.endDate = req.body.endDate || project.endDate;
+    project.status = req.body.status || project.status;
+    project.comment = req.body.comment || project.comment;
 
-    allowedFields.forEach((field) => {
-      if (req.body[field] !== undefined) {
-        project[field] = req.body[field];
-      }
-    });
-
-    // Fix members[] (FormData arrays come as strings or arrays)
-    if (Array.isArray(req.body["members[]"])) {
-      project.members = req.body["members[]"];
-    } else if (req.body["members[]"]) {
-      project.members = [req.body["members[]"]];
+    // ⭐ MEMBERS FIX (matches updateTask logic)
+    if (req.body.members) {
+      project.members = Array.isArray(req.body.members)
+        ? req.body.members
+        : [req.body.members];
     }
 
     await project.save();

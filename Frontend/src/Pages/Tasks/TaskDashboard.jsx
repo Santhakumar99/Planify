@@ -62,7 +62,7 @@ export default function TasksDashboard() {
   const loadTasks = async () => {
     try {
       setLoadingLocal(true);
-      const res = await axios.get(`${API_URL}/api/tasks/all`, {
+      const res = await axios.get(`${API_URL}/api/task/getAllTasks`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -179,7 +179,7 @@ export default function TasksDashboard() {
           )}
         </div>
       ) : (
-        <div className="proj-content list-wrapper">
+        <div className="list-wrapper">
           <div className="proj-content list">
             {displayTasks.length === 0 ? (
               <div className="empty">No tasks found</div>
@@ -203,7 +203,6 @@ export default function TasksDashboard() {
           </div>
         </div>
       )}
-
       {/* ------- MODAL -------- */}
       {showModal && (
         <TaskModal

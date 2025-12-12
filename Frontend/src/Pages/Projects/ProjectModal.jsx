@@ -154,22 +154,31 @@ export default function ProjectModal({
 
   const handleSubmit = async (values, { setSubmitting, resetForm, setErrors }) => {
     try {
-      const formData = new FormData();
+      // const formData = new FormData();
 
-      formData.append("name", values.name);
-      formData.append("description", values.description || "");
-      formData.append("startDate", values.startDate);
-      formData.append("endDate", values.endDate);
-      formData.append("comment", values.comment || "");
-      formData.append("status", values.status);
+      // formData.append("name", values.name);
+      // formData.append("description", values.description || "");
+      // formData.append("startDate", values.startDate);
+      // formData.append("endDate", values.endDate);
+      // formData.append("comment", values.comment || "");
+      // formData.append("status", values.status);
 
-      values.members.forEach((m) => {
-        formData.append("members[]", m.id);
-      });
-
+      // values.members.forEach((m) => {
+      //   formData.append("members[]", m.id);
+      // });
+      const payload = {
+        name: values.name,
+        description: values.description,
+        startDate: values.startDate,
+        endDate: values.endDate,
+        status: values.status,
+        members: values.members.map(m => m.id),
+        comment: values.comment,
+      };
+      
       let res;
       if (isEdit) {
-        res = await updateProject(initialData._id, formData);
+        res = await updateProject(initialData._id, payload);
       } else {
         res = await createProject(formData);
       }

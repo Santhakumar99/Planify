@@ -1,0 +1,148 @@
+.uc-card {
+    width: 100%;
+    max-width: 430px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.06);
+    transition: 0.25s ease;
+  }
+  
+  .uc-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 10px 28px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* LEFT SECTION */
+  .uc-left {
+    position: relative;
+  }
+  
+  .uc-avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* green dot */
+  .uc-status {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+  
+  .uc-status.active {
+    background-color: #22c55e; /* green */
+  }
+  
+  .uc-status.blocked {
+    background-color: #ef4444; /* red */
+  }
+  
+  /* RIGHT SECTION */
+  .uc-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .uc-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    color: #111827;
+  }
+  
+  .uc-username {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+  }
+  
+  .uc-company {
+    font-size: 14px;
+    color: #10b981;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+  }
+  
+  /* Contact rows */
+  .uc-contact {
+    margin-top: 6px;
+  }
+  
+  .uc-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #374151;
+  }
+  
+  .uc-icon {
+    color: #10b981;
+    font-size: 16px;
+  }
+  /* Split row: contact left + actions right */
+.uc-split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 12px;
+  width: 100%;
+}
+
+/* Contact stays same */
+.uc-contact {
+  flex: 1;
+}
+
+/* Right side action buttons */
+.uc-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.uc-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+/* Edit button style */
+.uc-btn.edit {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+.uc-btn.edit:hover {
+  background: #0284c7;
+  color: white;
+}
+
+/* Delete button style */
+.uc-btn.delete {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.uc-btn.delete:hover {
+  background: #dc2626;
+  color: white;
+}

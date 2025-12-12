@@ -1,104 +1,138 @@
+
 // import React from "react";
 // import { formatDate } from "../CommonComponents/DateFormat.JSX";
-// export default function ProjectCard({ project, viewType = "grid", onView }) {
-//   const { name, endDate, members = [], stats, avatar } = project;
-// const renderMembers = (list) => {
-//   return list.slice(0, 3).map((m, i) => (
-//     <div key={i} className="member-xs" title={m.name}>
-//       {m?.name ? m.name[0].toUpperCase() : "?"}
-//     </div>
-//   ));
-// };
+// import "./TaskCard.css"
 
-
-//   if (viewType === "list") {
-//     return (
-//       <div className="project-row">
-//         <div className="row-left">
-//           <img className="row-avatar" src={avatar} alt={name} />
-//           <div className="row-meta">
-//             <div className="row-title">{name}</div>
-//             <div className="row-sub">Development</div>
-//           </div>
-//         </div>
-
-//         <div className="row-stats">
-//           <div className="stat-num">{Math.round(stats?.progress)}</div>
-//           <div className="stat-label">Progress</div>
-//         </div>
-
-//         <div className="row-date">
-//           <div className="date-value">{endDate ? formatDate(endDate) : "-"}</div>
-//           <div className="date-sub">Due date</div>
-//         </div>
-
-//         <div className="row-members">
-//           {renderMembers(members)}
-//           {members.length > 3 && <div className="member-chip more">+{members.length - 3}</div>}
-//         </div>
-
-//         <div className="row-actions">
-//           <button className="btn-view" onClick={onView}>
-//             View
-//           </button>
-//         </div>
-//       </div>
-//     );
-//   }
-
-//   // GRID CARD
+// export default function TaskCard({ task, onEdit, onDelete }) {
 //   return (
-//     <div className="project-card">
-//       <div className="card-top">
-//         {/* <img className="card-avatar" src={avatar} alt={name} /> */}
-//         <div className="avatar-circle sm">
-//           {name.charAt(0).toUpperCase()}
+//     <div className="task-card">
+//       <div className="task-header">
+//         <h4>{task.title}</h4>
+//         <div className="task-actions">
+//           <button className="icon-btn edit" onClick={onEdit}>✏️</button>
+//           <button className="icon-btn delete" onClick={onDelete}>🗑️</button>
 //         </div>
 //       </div>
 
-//       <div className="card-body">
-//         <h3 className="card-title">{name}</h3>
-//         <div className="card-date">Due to: {endDate ? formatDate(endDate) : "-"}</div>
-//         <div className="card-tag">Development</div>
-//       </div>
+//       <p className="task-desc">{task.description}</p>
 
-//       <div className="card-footer">
-//         <div className="members">{renderMembers(members)}</div>
-
-//         <div className="progress-bar" aria-hidden>
-//           <div className="progress" style={{ width: `${Math.min(100, stats?.progress)}%` }} />
-//         </div>
-
-//         <div className="card-actions">
-//           <button className="btn-view" onClick={onView}>
-//             View
-//           </button>
-//         </div>
+//       <div className="task-meta">
+//         <p><strong>Status:</strong> {task.status}</p>
+//         <p><strong>Priority:</strong> {task.priority}</p>
+//         <p><strong>Due:</strong> {task.dueDate ? formatDate(task.dueDate) : "-"}</p>
 //       </div>
 //     </div>
 //   );
 // }
-// src/components/Tasks/TaskCard.jsx
 import React from "react";
-import { formatDate } from "../CommonComponents/DateFormat.JSX";
+import "./TaskCard.css"; // Your own overrides if needed
 
-export default function TaskCard({ task, onEdit, onDelete }) {
+export default function TaskCard({ task, viewType, onEdit, onDelete }) {
+  const title = task?.name || task?.title || "Untitled Task";
+  const description = task?.description || "";
+  const dueDate = task?.endDate
+    ? new Date(task.endDate).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    })
+    : "-";
+
+  const members = task?.members || [];
+
+  /* ------------------------------------------------------------------
+      GRID VIEW (Same structure as ProjectCard grid)
+  ------------------------------------------------------------------ */
+  if (viewType === "grid") {
+    return (
+      <div className="project-card">
+        {/* Top Avatar */}
+        <div className="card-top">
+          <div className="avatar-circle sm">
+            {title.charAt(0).toUpperCase()}
+          </div>
+        </div>
+
+        {/* Body */}
+        <div className="card-body">
+          <div className="card-title">{title}</div>
+          <div className="card-date">Due: {dueDate}</div>
+
+          <span className="card-tag">
+            {task.status?.replace("-", " ") || "Status"}
+          </span>
+        </div>
+
+        {/* Footer */}
+        <div className="card-footer">
+          {/* Members preview */}
+          <div style={{ display: "flex", gap: "8px" }}>
+            {members.slice(0, 3).map((m) => (
+              <div key={m._id} className="member-xs">
+                {m.name?.charAt(0).toUpperCase()}
+              </div>
+            ))}
+
+            {members.length > 3 && (
+              <div className="member-xs">+{members.length - 3}</div>
+            )}
+          </div>
+
+          {/* Right Button */}
+          <button className="btn-view" onClick={onEdit}>
+            View
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  /* ------------------------------------------------------------------
+      LIST VIEW (Exact ProjectCard List style)
+  ------------------------------------------------------------------ */
   return (
-    <div className="task-card">
-      <div className="task-header">
-        <h4>{task.title}</h4>
-        <div className="task-actions">
-          <button className="icon-btn edit" onClick={onEdit}>✏️</button>
-          <button className="icon-btn delete" onClick={onDelete}>🗑️</button>
+    <div className="project-row">
+      {/* LEFT SIDE */}
+      <div className="row-left">
+        <div className="avatar-circle sm">
+          {title.charAt(0).toUpperCase()}
+        </div>
+        <div>
+          <div className="row-title">{title}</div>
+          <div className="row-sub">{description.slice(0, 55)}...</div>
         </div>
       </div>
 
-      <p className="task-desc">{task.description}</p>
+      {/* CENTER: STATUS */}
+      <div className="row-stats">
+        <div className="stat-num">{task.priority || "-"}</div>
+        <div className="stat-label">Priority</div>
+      </div>
 
-      <div className="task-meta">
-        <p><strong>Status:</strong> {task.status}</p>
-        <p><strong>Priority:</strong> {task.priority}</p>
-        <p><strong>Due:</strong> {task.dueDate ? formatDate(task.dueDate) : "-"}</p>
+      {/* DUE DATE */}
+      <div className="row-date">
+        {dueDate}
+        <div className="stat-label">Due date</div>
+      </div>
+
+      {/* MEMBERS */}
+      <div className="row-members">
+        {members.slice(0, 3).map((m) => (
+          <div key={m._id} className="member-chip">
+            {m.name?.charAt(0).toUpperCase()}
+          </div>
+        ))}
+
+        {members.length > 3 && (
+          <div className="member-chip">+{members.length - 3}</div>
+        )}
+      </div>
+
+      {/* ACTIONS */}
+      <div className="row-actions">
+        <button className="btn-view" onClick={onEdit}>
+          View
+        </button>
       </div>
     </div>
   );

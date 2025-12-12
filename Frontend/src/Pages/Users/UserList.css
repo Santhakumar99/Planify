@@ -1,0 +1,93 @@
+.user-row-card {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px 26px;
+    border-radius: 14px;
+    border: 1px solid #eef2f6;
+    box-shadow: 0px 6px 18px rgba(15, 23, 42, 0.03);
+    margin-bottom: 16px;
+  }
+  
+  /* LEFT SECTION */
+  .user-row-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 260px;
+  }
+  
+  /* FIXED: Avatar — This was missing earlier */
+  .user-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  /* Text Left */
+  .user-left-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-name {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  
+  .user-role {
+    font-size: 13px;
+    color: #6b7280;
+  }
+  
+  /* EMAIL */
+  .user-email {
+    flex: 1;
+    font-size: 14px;
+    color: #374151;
+  }
+  
+  /* STATUS */
+  .user-status {
+    width: 120px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+  }
+  
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  
+  .status-dot.active {
+    background: #22c55e;
+  }
+  
+  .status-dot.blocked {
+    background: #ef4444;
+  }
+  
+  /* VIEW BUTTON */
+  .view-btn {
+    background: white;
+    border: 1px solid #e5e7eb;
+    padding: 8px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .view-btn:hover {
+    background: #f3f4f6;
+  }
+  

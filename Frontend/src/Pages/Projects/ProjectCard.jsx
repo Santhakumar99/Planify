@@ -15,7 +15,10 @@ const renderMembers = (list) => {
     return (
       <div className="project-row">
         <div className="row-left">
-          <img className="row-avatar" src={avatar} alt={name} />
+          {/* <img className="row-avatar" src={avatar} alt={name} /> */}
+          <div className="avatar-circle sm">
+            {name.charAt(0).toUpperCase()}
+          </div>
           <div className="row-meta">
             <div className="row-title">{name}</div>
             <div className="row-sub">Development</div>

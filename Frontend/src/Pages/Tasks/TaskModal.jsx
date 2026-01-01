@@ -810,13 +810,13 @@ const normalizeMembers = (members = []) => {
 /* ---------------------------------------------------------
    SAFELY EXTRACT PROJECT ID
 ----------------------------------------------------------*/
-// const extractProjectId = (project) => {
-//   if (!project) return "";
-//   if (typeof project === "string") return project;
-//   if (project?._id) return String(project._id);
-//   if (project?.$oid) return String(project.$oid);
-//   return "";
-// };
+const extractProjectId = (project) => {
+  if (!project) return "";
+  if (typeof project === "string") return project;
+  if (project?._id) return String(project._id);
+  if (project?.$oid) return String(project.$oid);
+  return "";
+};
 
 const getCorrectProjectId = () => {
   if (initialData?.projectId?._id) return String(initialData.projectId._id);

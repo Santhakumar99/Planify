@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
-import "../Dashboard/dashboard.css";
+import "../Dashboard/Dashboard.css";
 
 const DashboardLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

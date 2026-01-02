@@ -2,15 +2,12 @@
   "name": "project_management_backend",
   "version": "1.0.0",
   "description": "creating a apis",
-  "main": "app.js",
-  "type":"module",
+  "main": "App.js",
+  "type": "module",
   "scripts": {
-    "start": "nodemon server",
-    "server": "nodemon server"
+    "start": "node App.js",
+    "dev": "nodemon App.js"
   },
-  "keywords": [
-    "backend"
-  ],
   "author": "Santhakumar R",
   "license": "ISC",
   "dependencies": {

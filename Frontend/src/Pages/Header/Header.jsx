@@ -8,7 +8,7 @@ import {
   FiMenu,
   FiX,
 } from "react-icons/fi";
-import "../Header/header.css";
+import "../Header/Header.css";
 import {useNavigate } from "react-router-dom";
 import { useAuth } from "../../Auth/Context";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";

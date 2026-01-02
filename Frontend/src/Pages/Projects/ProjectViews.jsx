@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Projects/ProjectView.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { formatDate } from "../CommonComponents/DateFormat.JSX";
+import { formatDate } from "../CommonComponents/DateFormat.jsx";
 import ProjectModal from "./ProjectModal";
 import DeleteConfirm from "../CommonComponents/DeleteConfirm";
 import { useToast } from "../CommonComponents/Toast/ToastProvider";

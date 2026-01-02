@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "../CommonComponents/DateFormat.JSX";
+import { formatDate } from "../CommonComponents/DateFormat.jsx";
 export default function ProjectCard({ project, viewType = "grid", onView }) {
   const { name, endDate, members = [], stats, avatar } = project;
 const renderMembers = (list) => {

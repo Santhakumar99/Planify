@@ -9,7 +9,7 @@ import {
   FiMenu,
 } from "react-icons/fi";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import "../Sidebar/sidebar.css";
+import "../Sidebar/Sidebar.css";
 import { useAuth } from "../../Auth/Context";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {

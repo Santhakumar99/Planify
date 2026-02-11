@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import sendEmail from "../../config/Mail.Config.js";
 
 export const register = async (req, res) => {
   try {
@@ -6,10 +7,37 @@ export const register = async (req, res) => {
 
     if (!name || !email || !password)
       return res.status(400).json({ message: "Missing fields" });
-
     const user = await User.create({ name, email, password, role });
     const token = user.generateJWT();
-    res.status(201).json({
+    // email
+
+    var useremail = user?.email;
+    const subject = "Welcome aboard! 🎉";
+    const html = `
+     <p>Hi ${user.name},</p>
+     <p>
+    Welcome to <strong>Project Management Tool</strong> — we’re excited to have you on board!
+    </p>
+
+    <p>
+    You can now create projects, assign tasks, and collaborate with your team
+    all in one place.
+   </p>
+
+   <p>
+    🚀 Let’s get started!
+  </p>
+
+  <p>
+    Cheers,<br/>
+    <strong>Project Management Tool Team</strong>
+  </p>
+`;
+
+    const emailSend = await sendEmail(useremail, subject, html);
+    // response
+
+    res.status(200).json({
       success:true,
       user: {
         id: user._id,

@@ -1,29 +1,4 @@
 
-// import React from "react";
-// import { formatDate } from "../CommonComponents/DateFormat.JSX";
-// import "./TaskCard.css"
-
-// export default function TaskCard({ task, onEdit, onDelete }) {
-//   return (
-//     <div className="task-card">
-//       <div className="task-header">
-//         <h4>{task.title}</h4>
-//         <div className="task-actions">
-//           <button className="icon-btn edit" onClick={onEdit}>✏️</button>
-//           <button className="icon-btn delete" onClick={onDelete}>🗑️</button>
-//         </div>
-//       </div>
-
-//       <p className="task-desc">{task.description}</p>
-
-//       <div className="task-meta">
-//         <p><strong>Status:</strong> {task.status}</p>
-//         <p><strong>Priority:</strong> {task.priority}</p>
-//         <p><strong>Due:</strong> {task.dueDate ? formatDate(task.dueDate) : "-"}</p>
-//       </div>
-//     </div>
-//   );
-// }
 import React from "react";
 import "./TaskCard.css"; // Your own overrides if needed
 
@@ -39,7 +14,7 @@ export default function TaskCard({ task, viewType, onEdit, onDelete }) {
     : "-";
 
   const members = task?.members || [];
-
+  console.log(task)
   /* ------------------------------------------------------------------
       GRID VIEW (Same structure as ProjectCard grid)
   ------------------------------------------------------------------ */
@@ -77,7 +52,9 @@ export default function TaskCard({ task, viewType, onEdit, onDelete }) {
               <div className="member-xs">+{members.length - 3}</div>
             )}
           </div>
-
+          {/* <div className="progress-bar" aria-hidden>
+            <div className="progress" style={{ width: `${Math.min(100, stats?.progress)}%` }} />
+          </div> */}
           {/* Right Button */}
           <button className="btn-view" onClick={onEdit}>
             View

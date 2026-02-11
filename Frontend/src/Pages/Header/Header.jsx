@@ -12,13 +12,14 @@ import "../Header/Header.css";
 import {useNavigate } from "react-router-dom";
 import { useAuth } from "../../Auth/Context";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-
+import { useDispatch } from "react-redux";
+import { logout } from "../../Store/Slices/authSlice";
 const Header = ({ title, isSidebarOpen, toggleSidebar }) => {
   const [openPopup, setOpenPopup] = useState(false);
   const popupRef = useRef(null);
   const navigate = useNavigate();
   const { user } = useAuth();
-  console.log(isSidebarOpen, toggleSidebar);
+  const dispatch = useDispatch();
   let username = user?.name;
   let role = user?.role;
   // Close popup on outside click
@@ -34,7 +35,10 @@ const Header = ({ title, isSidebarOpen, toggleSidebar }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
+  const LogoutPage = ()=>{
+    dispatch(logout())
+    navigate("/login")
+}
   return (
     <header className="app-header">
     <div className="hamburger-icon" onClick={toggleSidebar}>
@@ -117,7 +121,7 @@ const Header = ({ title, isSidebarOpen, toggleSidebar }) => {
 
       <div className="divider"></div>
 
-      <div className="popup-item logout" onClick={() => navigate("/login")} >
+              <div className="popup-item logout" onClick={LogoutPage} >
         <FiLogOut className="icon" /> Log Out
       </div>
     </div>

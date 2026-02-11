@@ -13,13 +13,13 @@ export const AuthProvider = ({ children }) => {
     let UserName = sessionStorage.getItem("UserName");
     let Role = sessionStorage.getItem("Role");
     let token = sessionStorage.getItem("token");
-    console.log("🔁 [Auth Init] restoring from sessionStorage", {
-      Email,
-      UserID,
-      UserName,
-      Role,
-      token,
-    });
+    // console.log("🔁 [Auth Init] restoring from sessionStorage", {
+    //   Email,
+    //   UserID,
+    //   UserName,
+    //   Role,
+    //   token,
+    // });
 
     if (UserName && Role && Email) {
       setUser({ name: UserName, email: Email, role: Role, id: UserID, token });

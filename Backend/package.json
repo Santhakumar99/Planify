@@ -2,7 +2,11 @@
   "name": "project_management_backend",
   "version": "1.0.0",
   "description": "creating a apis",
+<<<<<<< HEAD
   "main": "App.js",
+=======
+  "main": "app.js",
+>>>>>>> 5b62c0b (adding the modified files and sidebar issues fixed)
   "type": "module",
   "scripts": {
     "start": "node App.js",
@@ -17,6 +21,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.3",
+    "nodemailer": "^7.0.12",
     "nodemon": "^3.1.11",
     "path": "^0.12.7",
     "validator": "^13.15.23"

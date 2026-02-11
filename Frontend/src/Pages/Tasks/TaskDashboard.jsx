@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import DeleteConfirm from "../CommonComponents/DeleteConfirm";
 import { useToast } from "../CommonComponents/Toast/ToastProvider";
 import { useLoading } from "../CommonComponents/LoadingProvider";
+import { useSelector } from "react-redux";
+
 
 const STATUS_BUTTONS = [
   { key: "all", label: "All Tasks" },
@@ -37,8 +39,14 @@ export default function TasksDashboard() {
   const { showToast } = useToast();
   const { setLoading } = useLoading();
   const API_URL = import.meta.env.VITE_API_URL;
-  const token = sessionStorage.getItem("token");
 
+  const auth = useSelector(state => state.auth);
+  const token = auth?.token;
+  useEffect(() => {
+    console.log("AUTH FROM REDUX:", JSON.parse(JSON.stringify(auth)));
+  }, []);
+  
+  
   // Load all members (for assign dropdown)
   const loadMembers = async () => {
     try {

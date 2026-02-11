@@ -9,7 +9,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAuth } from "../../Auth/Context";
-
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../Store/Slices/authSlice";
 const LoginSchema = Yup.object().shape({
   email: Yup.string().required("Username is required"),
   password: Yup.string().required("Password is required"),
@@ -20,7 +21,7 @@ const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
-
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -33,7 +34,7 @@ const LoginPage = () => {
 
       try {
         const Result = await axios.post(`${API_URL}/api/user/login`, values);
-        console.log(Result);
+        // console.log(Result);
         if (Result?.data) {
           const user = Result.data?.user || {};
           const token = Result.data?.token || "";
@@ -54,7 +55,17 @@ const LoginPage = () => {
             role: user.role,
             token,
           });
-
+          dispatch(
+            loginSuccess({
+              user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+              },
+              token
+            })
+          )
           // // Redirect after login
           //  setTimeout(() => {
           navigate("/dashboard", { replace: true });

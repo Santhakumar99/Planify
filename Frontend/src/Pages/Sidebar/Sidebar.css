@@ -82,3 +82,25 @@ span.appTitle {
     font-size: 30px;
     font-weight: 700;
 }
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  color: #555;
+  transition: 0.3s;
+}
+
+.menu-item.active {
+  background-color: #4d86ff;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+}
+.menu-item,
+.menu-item:focus,
+.menu-item:active,
+.menu-item:hover {
+  text-decoration: none !important;
+}
+

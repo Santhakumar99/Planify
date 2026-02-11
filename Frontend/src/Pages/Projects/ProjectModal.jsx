@@ -152,20 +152,48 @@ export default function ProjectModal({
     status: initialData?.status || "todo",
   };
 
+  // const handleSubmit = async (values, { setSubmitting, resetForm, setErrors }) => {
+  //   try {
+  //     console.log("test")
+  //     // const formData = new FormData();
+
+  //     // formData.append("name", values.name);
+  //     // formData.append("description", values.description || "");
+  //     // formData.append("startDate", values.startDate);
+  //     // formData.append("endDate", values.endDate);
+  //     // formData.append("comment", values.comment || "");
+  //     // formData.append("status", values.status);
+
+  //     // values.members.forEach((m) => {
+  //     //   formData.append("members[]", m.id);
+  //     // });
+  //     const payload = {
+  //       name: values.name,
+  //       description: values.description,
+  //       startDate: values.startDate,
+  //       endDate: values.endDate,
+  //       status: values.status,
+  //       members: values.members.map(m => m.id),
+  //       comment: values.comment,
+  //     };
+      
+  //     let res;
+  //     if (isEdit) {
+  //       res = await updateProject(initialData._id, payload);
+  //     } else {
+  //       res = await createProject(formData);
+  //     }
+
+  //     onSaved(res.data);
+  //     resetForm();
+  //   } catch (err) {
+  //     setErrors({ api: err.response?.data?.message || "Failed to save project" });
+  //   } finally {
+  //     setSubmitting(false);
+  //   }
+  // };
   const handleSubmit = async (values, { setSubmitting, resetForm, setErrors }) => {
     try {
-      // const formData = new FormData();
-
-      // formData.append("name", values.name);
-      // formData.append("description", values.description || "");
-      // formData.append("startDate", values.startDate);
-      // formData.append("endDate", values.endDate);
-      // formData.append("comment", values.comment || "");
-      // formData.append("status", values.status);
-
-      // values.members.forEach((m) => {
-      //   formData.append("members[]", m.id);
-      // });
       const payload = {
         name: values.name,
         description: values.description,
@@ -175,23 +203,24 @@ export default function ProjectModal({
         members: values.members.map(m => m.id),
         comment: values.comment,
       };
-      
+
       let res;
       if (isEdit) {
         res = await updateProject(initialData._id, payload);
       } else {
-        res = await createProject(formData);
+        res = await createProject(payload); // ✅ FIXED
       }
 
       onSaved(res.data);
       resetForm();
+      onClose(); // optional but good UX
     } catch (err) {
       setErrors({ api: err.response?.data?.message || "Failed to save project" });
     } finally {
       setSubmitting(false);
     }
   };
-
+  
   return (
     <div className="pm-modal-backdrop">
       <div className="pm-modal">

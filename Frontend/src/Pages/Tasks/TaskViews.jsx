@@ -1,37 +1,42 @@
 import React, { useState, useEffect } from "react";
-import "../Projects/ProjectView.css";
+import "../tasks/taskView.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { formatDate } from "../CommonComponents/DateFormat.jsx";
-import ProjectModal from "./ProjectModal";
+import TaskModal from "./TaskModal";
 import DeleteConfirm from "../CommonComponents/DeleteConfirm";
 import { useToast } from "../CommonComponents/Toast/ToastProvider";
 
 
-const ProjectOverview = () => {
+const TaskOverview = () => {
     const { showToast } = useToast();
     const { id } = useParams();
-    let Userrole = sessionStorage.getItem("Role")
+    let Userrole = sessionStorage.getItem("Role");
     const API_URL = import.meta.env.VITE_API_URL;
-    const [project, setProject] = useState(null);
+    const [task, setTask] = useState(null);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
-    const [editProject, setEditProject] = useState(null);
-    const [projectMembers, setProjectMembers] = useState([]);
+    const [editTask, setEditTask] = useState(null);
+    const [taskMembers, setTaskMembers] = useState([]);
     const [showDelete, setShowDelete] = useState(false);
     const [deleteLoading, setDeleteLoading] = useState(false);
     const navigate = useNavigate();
-    const handleDeleteProject = async () => {
+    const handleBack = () => {
+        navigate(-1);   // goes to previous page
+    };
+
+    // Delete Task API calling 
+    const handleDeletetask = async () => {
         try {
             setDeleteLoading(true);
 
             const token = sessionStorage.getItem("token");
-            const res = await axios.delete(`${API_URL}/api/project/deleteProject/${id}`, {
+            const res = await axios.delete(`${API_URL}/api/task/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             console.log(res?.data?.message)
-            showToast((res?.data?.message|| "Project deleted!"), "success");
-            navigate("/projects");
+            showToast((res?.data?.message || "task deleted!"), "success");
+            navigate("/tasks");
         } catch (error) {
             console.error("DELETE PROJECT ERROR:", error);
             // alert(error.response?.data?.message || "Failed to delete project");
@@ -39,8 +44,8 @@ const ProjectOverview = () => {
             setDeleteLoading(false);
         }
     };
-      
-    
+
+    // Loading Team Members
     const loadMembers = async () => {
         try {
             const token = sessionStorage.getItem("token");
@@ -55,44 +60,45 @@ const ProjectOverview = () => {
                 email: u.email,
             }));
             console.log(formatted)
-            setProjectMembers(formatted);
+            setTaskMembers(formatted);
         } catch (err) {
             console.error("Failed to load members:", err);
         }
-      };
-    const loadProject = async () => {
+    };
+
+    // Loading the Task
+    const loadtask = async () => {
         try {
             setLoading(true);
             const token = sessionStorage.getItem("token");
 
-            const res = await axios.get(`${API_URL}/api/project/${id}`, {
+            const res = await axios.get(`${API_URL}/api/task/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
-            setProject(res.data.project);
+            setTask(res.data.task);
             setLoading(false);
         } catch (err) {
-            console.error("Failed to fetch project:", err);
+            console.error("Failed to fetch task:", err);
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        loadProject();
+        loadtask();
         loadMembers();
     }, [id]);
-  console.log(project)
+    //   console.log(project)
     return (
         <div className="project-container">
-
             {/* Header Section */}
             <div className="project-header">
                 <div>
-                    <h2 className="project-title">{project?.name}</h2>
-                    {/* <p className="project-subtitle">{project ? project?.description : "-"}</p> */}
+                    <h2 className="project-title">{task?.name}</h2>
+                    {/* <p className="task-subtitle">{task ? task?.description : "-"}</p> */}
 
                     <div className="tags">
-                        <span className="tag yellow">{project ? project?.status : "-"}</span>
+                        <span className="tag yellow">{task ? task?.status : "-"}</span>
                         <span className="tag red">High Priority</span>
                     </div>
                 </div>
@@ -101,10 +107,13 @@ const ProjectOverview = () => {
                     <div>
                         {Userrole !== "employee" && (
                             <div className="action-buttons">
+                                <button onClick={handleBack} className="btn btn-light" style={{ margin: "10px" }}>
+                                    ← Back
+                                </button>
                                 <button
                                     className="btn-action edit"
                                     onClick={() => {
-                                        setEditProject(project);
+                                        setEditTask(task);
                                         setShowModal(true);
                                     }}
                                 >
@@ -120,15 +129,15 @@ const ProjectOverview = () => {
                                     <span>Delete</span>
                                 </button>
                             </div>
-                  
-                 
+
+
                         )}
                         {/* <p className="label">Deadline:</p>
-                        <p className="value">{project ? formatDate(project?.endDate) : "-"}</p> */}
+                        <p className="value">{task ? formatDate(task?.endDate) : "-"}</p> */}
                     </div>
                     <div>
                         {/* <p className="label">Started:</p>
-                        <p className="value">{project ? formatDate(project?.startDate) : "-"}</p> */}
+                        <p className="value">{task ? formatDate(task?.startDate) : "-"}</p> */}
                     </div>
                 </div>
             </div>
@@ -137,12 +146,12 @@ const ProjectOverview = () => {
                 <div className="stat-box">
                     <div className="stat-header">Progress</div>
 
-                    <div className="stat-value">{project?.stats?.progress ?? 0}%</div>
+                    <div className="stat-value">{task?.stats?.progress ?? 0}%</div>
 
                     <div className="progress-track">
                         <div
                             className="progress-fill-modern"
-                            style={{ width: `${project?.stats?.progress ?? 0}%` }}
+                            style={{ width: `${task?.stats?.progress ?? 0}%` }}
                         />
                     </div>
 
@@ -151,17 +160,17 @@ const ProjectOverview = () => {
 
                 <div className="stat-box">
                     <div className="stat-header">Deadline</div>
-                    <div className="stat-big">{project ? formatDate(project.endDate) : "-"}</div>
+                    <div className="stat-big">{task ? formatDate(task.endDate) : "-"}</div>
                 </div>
 
                 <div className="stat-box">
                     <div className="stat-header">Start Date</div>
-                    <div className="stat-big">{project ? formatDate(project.startDate) : "-"}</div>
+                    <div className="stat-big">{task ? formatDate(task.startDate) : "-"}</div>
                 </div>
 
                 <div className="stat-box">
                     <div className="stat-header">Days Left</div>
-                    <div className="stat-big">{project?.stats?.daysLeft ?? 0}</div>
+                    <div className="stat-big">{task?.stats?.daysLeft ?? 0}</div>
                 </div>
             </div>
 
@@ -176,44 +185,44 @@ const ProjectOverview = () => {
 
             <div className="content-grid">
                 <div className="info-card">
-                    <h3 className="info-title">Project Details</h3>
+                    <h3 className="info-title">task Details</h3>
 
                     <div className="info-item">
                         <p className="label">Name</p>
-                        <p className="value">{project?.name}</p>
+                        <p className="value">{task?.name}</p>
                     </div>
 
                     <div className="info-item">
                         <p className="label">Description</p>
-                        <p className="value">{project?.description}</p>
+                        <p className="value">{task?.description}</p>
                     </div>
 
                     <div className="info-item">
                         <p className="label">Start Date</p>
-                        <p className="value">{formatDate(project?.startDate)}</p>
+                        <p className="value">{formatDate(task?.startDate)}</p>
                     </div>
 
                     <div className="info-item">
                         <p className="label">Deadline</p>
-                        <p className="value">{formatDate(project?.endDate)}</p>
+                        <p className="value">{formatDate(task?.endDate)}</p>
                     </div>
 
                     <div className="info-item">
                         <p className="label">Created By</p>
                         <div className="member-row">
                             <div className="avatar-circle sm">
-                                {project?.createdBy?.name.charAt(0)}
+                                {task?.createdBy?.name.charAt(0)}
                             </div>
-                            <span className="member-name">{project?.createdBy?.name}</span>
+                            <span className="member-name">{task?.createdBy?.name}</span>
                         </div>
                     </div>
                 </div>
                 <div className="info-card">
                     <h3 className="info-title">Team Members</h3>
 
-                    {project?.members?.length > 0 ? (
+                    {task?.members?.length > 0 ? (
                         <>
-                            {project.members.slice(0, 6).map((m) => (
+                            {task.members.slice(0, 6).map((m) => (
                                 <div className="member-row" key={m._id}>
                                     <div className="avatar-circle sm">
                                         {m.name.charAt(0).toUpperCase()}
@@ -222,29 +231,29 @@ const ProjectOverview = () => {
                                 </div>
                             ))}
 
-                            {project.members.length > 6 && (
-                                <div className="more-members">+{project.members.length - 6} more</div>
+                            {task.members.length > 6 && (
+                                <div className="more-members">+{task.members.length - 6} more</div>
                             )}
                         </>
                     ) : (
                         <p className="no-members">No team members added.</p>
                     )}
                 </div>
-                <ProjectModal
+                <TaskModal
                     visible={showModal}
                     onClose={() => setShowModal(false)}
-                    initialData={editProject}   // <-- important
+                    initialData={editTask}   // <-- important
                     onSaved={() => {
                         setShowModal(false);
-                        loadProject();  // refresh after update
+                        loadtask();  // refresh after update
                     }}
-                    membersOptions={projectMembers || []}
+                    membersOptions={taskMembers || []}
                 />
                 <DeleteConfirm
                     visible={showDelete}
-                    message="Are you sure you want to delete this project?"
+                    message="Are you sure you want to delete this task?"
                     onClose={() => setShowDelete(false)}
-                    onConfirm={handleDeleteProject}
+                    onConfirm={handleDeletetask}
                     loading={deleteLoading}
                 />
 
@@ -253,4 +262,4 @@ const ProjectOverview = () => {
     );
 };
 
-export default ProjectOverview;
+export default TaskOverview;

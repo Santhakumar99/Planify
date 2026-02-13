@@ -270,39 +270,6 @@ export const deleteProject = async (req, res) => {
     }
   };
   
-// export const getProject = async (req, res) => {
-//     try {
-//       const projectId = req.params.id;
-//       const userId = req.user._id;
-  
-//       // const project = await Project.findById(projectId);
-//       const project = await Project.findById({
-//         $or: [
-//           { createdBy: userId },
-//           { members: userId }
-//         ]
-//       }).populate("createdBy", "name email")
-//         .populate("members", "name email");
-      
-//       if (!project) {
-//         return res.status(404).json({ status: "error", message: "Project not found" });
-//       }
-  
-//       const progress = getProjectStats(project.startDate, project.endDate);
-
-//       res.json({
-//         status: "success",
-//         project: {
-//           ...project._doc,
-//           stats: progress  // add new field
-//         }
-//       });
-
-//     } catch (error) {
-      
-//     }
-// }
-  
 export const getProject = async (req, res) => {
   try {
     const projectId = req.params.id;

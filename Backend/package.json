@@ -2,11 +2,7 @@
   "name": "project_management_backend",
   "version": "1.0.0",
   "description": "creating a apis",
-<<<<<<< HEAD
   "main": "App.js",
-=======
-  "main": "app.js",
->>>>>>> 5b62c0b (adding the modified files and sidebar issues fixed)
   "type": "module",
   "scripts": {
     "start": "node App.js",

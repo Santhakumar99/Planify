@@ -21,6 +21,10 @@ const ProjectOverview = () => {
     const [showDelete, setShowDelete] = useState(false);
     const [deleteLoading, setDeleteLoading] = useState(false);
     const navigate = useNavigate();
+    const handleBack = () => {
+        navigate(-1);   // goes to previous page
+    };
+
     const handleDeleteProject = async () => {
         try {
             setDeleteLoading(true);
@@ -84,8 +88,11 @@ const ProjectOverview = () => {
   console.log(project)
     return (
         <div className="project-container">
-
+            <button onClick={handleBack} className="btn btn-light" style={{margin:"10px"}}>
+                ← Back
+            </button>
             {/* Header Section */}
+
             <div className="project-header">
                 <div>
                     <h2 className="project-title">{project?.name}</h2>

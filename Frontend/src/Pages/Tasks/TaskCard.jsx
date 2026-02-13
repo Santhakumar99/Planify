@@ -2,7 +2,7 @@
 import React from "react";
 import "./TaskCard.css"; // Your own overrides if needed
 
-export default function TaskCard({ task, viewType, onEdit, onDelete }) {
+export default function TaskCard({ task, viewType, onView }) {
   const title = task?.name || task?.title || "Untitled Task";
   const description = task?.description || "";
   const dueDate = task?.endDate
@@ -14,6 +14,7 @@ export default function TaskCard({ task, viewType, onEdit, onDelete }) {
     : "-";
 
   const members = task?.members || [];
+  const stats = task?.stats || [];
   console.log(task)
   /* ------------------------------------------------------------------
       GRID VIEW (Same structure as ProjectCard grid)
@@ -52,13 +53,19 @@ export default function TaskCard({ task, viewType, onEdit, onDelete }) {
               <div className="member-xs">+{members.length - 3}</div>
             )}
           </div>
-          {/* <div className="progress-bar" aria-hidden>
-            <div className="progress" style={{ width: `${Math.min(100, stats?.progress)}%` }} />
-          </div> */}
+          <div className="progress-bar" aria-hidden>
+            <div className="progress"
+              style={{ width: `${Math.min(100, stats?.progress)}%` }}
+            />
+          </div>
           {/* Right Button */}
-          <button className="btn-view" onClick={onEdit}>
+          <button
+            className="btn-view"
+            onClick={onView}
+          >
             View
           </button>
+
         </div>
       </div>
     );
@@ -107,7 +114,7 @@ export default function TaskCard({ task, viewType, onEdit, onDelete }) {
 
       {/* ACTIONS */}
       <div className="row-actions">
-        <button className="btn-view" onClick={onEdit}>
+        <button className="btn-view" onClick={onView}>
           View
         </button>
       </div>

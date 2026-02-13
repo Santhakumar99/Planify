@@ -66,9 +66,9 @@ const UserModal = ({ closeModal, editUser, refresh }) => {
                             <label>Role</label>
                             <Field as="select" name="role" className="form-input">
                                 <option value="">Select</option>
-                                <option value="Developer">Developer</option>
-                                <option value="Tester">Tester</option>
-                                <option value="Manager">Manager</option>
+                                <option value="employee">Employee</option>
+                                <option value="manager">Manager</option>
+                                <option value="admin">Admin</option>
                             </Field>
                         </div>
 

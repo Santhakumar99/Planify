@@ -1,92 +1,87 @@
-/* MATCHES ProjectModal.css EXACTLY */
-.user-modal-backdrop {
+.modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(18, 24, 39, 0.55);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
+  justify-content: center;
   z-index: 9999;
 }
 
-.user-modal {
-  width: 820px;
-  max-width: 95%;
+.modal-box {
   background: #ffffff;
+  width: 600px;
+  max-width: 95%;
   border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
-  animation: fadeIn 0.25s ease;
+  padding: 25px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.user-modal-header {
+.modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 14px;
-  border-bottom: 1px solid #eef0f4;
+  margin-bottom: 20px;
 }
 
-.user-modal-header h3 {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.user-close-btn {
-  font-size: 22px;
+.close-btn {
   cursor: pointer;
-  background: transparent;
-  border: none;
-  color: #707d87;
+  font-size: 22px;
 }
 
-/* Form fields */
-.um-field {
-  margin-bottom: 16px;
+.form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }
 
-.um-field label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  color: #4b5864;
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.um-input,
-.um-select,
-.um-textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #dce3eb;
-  border-radius: 8px;
-  font-size: 14px;
+.full-width {
+  grid-column: span 2;
 }
 
-/* Buttons */
-.um-actions {
+.form-input,
+.textarea-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.textarea-input {
+  min-height: 80px;
+  resize: none;
+}
+
+.modal-footer {
+  grid-column: span 2;
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-.um-btn-cancel {
-  background: #f1f4f6;
-  padding: 10px 18px;
-  border-radius: 8px;
+.cancel-btn {
+  padding: 8px 15px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 6px;
 }
 
-.um-btn-primary {
-  background: #4d86ff;
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(77, 134, 255, 0.25);
+.confirm-btn {
+  padding: 8px 15px;
+  border: none;
+  background: #4caf50;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
 }

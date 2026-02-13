@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { menuConfig } from "./MenuConfig";
 import MenuLink from "./MenuLink";
-import "../Sidebar/sidebar.css";
+import "../Sidebar/Sidebar.css";
 
 const Sidebar = ({ isOpen }) => {
   const user = useSelector((state) => state.auth.user);

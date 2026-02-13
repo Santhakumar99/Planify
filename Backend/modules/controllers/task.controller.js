@@ -1,6 +1,27 @@
 import Task from "../models/task.model.js";
 import Project from "../models/project.model.js";
 
+function getStats(startDate, endDate) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const today = new Date();
+
+  // -------- Total Days ----------
+  const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+
+  // -------- Completed Days ----------
+  const completedDays = Math.ceil((today - start) / (1000 * 60 * 60 * 24));
+
+  // -------- Progress ----------
+  let progress = 0;
+  if (completedDays >= totalDays) progress = 100;
+  else if (completedDays > 0) progress = Math.round((completedDays / totalDays) * 100);
+
+  // -------- Days Left ----------
+  const daysLeft = Math.max(0, Math.ceil((end - today) / (1000 * 60 * 60 * 24)));
+
+  return { progress, daysLeft, totalDays, completedDays };
+}
 export const getAllTasks = async (req, res) => {
   try {
     const userId = req.user._id;
@@ -21,11 +42,18 @@ export const getAllTasks = async (req, res) => {
           select: "name email"
         }
       });
+    const tasksWithStats = tasks.map((task) => {
+      const stats = getStats(task.startDate, task.endDate);
 
+      return {
+        ...task._doc,
+        stats
+      };
+    });
     res.status(200).json({
       status: "success",
-      count: tasks.length,
-      tasks
+      count: tasksWithStats.length,
+      tasks: tasksWithStats
     });
 
   } catch (error) {
@@ -174,4 +202,39 @@ export const updateTask = async (req, res) => {
       res.status(500).json({ message: error.message });
     }
   };
+export const getTask = async (req, res) => {
+  try
+  {
+   const taskId = req.params.id;
+  const userId = req.user._id;
+  const task= await Task.findOne({
+    _id: taskId,
+    $or: [
+      { createdBy: userId },
+      { members: userId }
+    ]
+  })
+    .populate("createdBy", "name email")
+    .populate("members", "name email");
   
+  if (!task) return res.status(404).json({ message: "Task not found" });
+  // 🔹 Progress, Total Days, Days Left
+    const stats = getStats(task.startDate, task.endDate);
+
+  res.json({
+    status: "success",
+    task: {
+      ...task._doc,
+      stats
+    }
+  });
+
+} catch (error) {
+  console.error("Get Task error:", error);
+  res.status(500).json({
+    status: "error",
+    message: "Server error"
+  });
+}
+
+  }

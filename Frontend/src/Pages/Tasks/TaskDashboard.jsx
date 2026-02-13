@@ -46,7 +46,10 @@ export default function TasksDashboard() {
     console.log("AUTH FROM REDUX:", JSON.parse(JSON.stringify(auth)));
   }, []);
   
-  
+  const openTaskDetails = (id) => {
+    console.log(id)
+    navigate(`/tasks/${id}`);
+  };
   // Load all members (for assign dropdown)
   const loadMembers = async () => {
     try {
@@ -178,6 +181,7 @@ export default function TasksDashboard() {
                   setEditTask(t);
                   setShowModal(true);
                 }}
+                onView={() => openTaskDetails(t._id)}
                 onDelete={() => {
                   setDeleteId(t._id);
                   setShowDelete(true);
@@ -201,6 +205,7 @@ export default function TasksDashboard() {
                     setEditTask(t);
                     setShowModal(true);
                   }}
+                  onView={() => openTaskDetails(t._id)}
                   onDelete={() => {
                     setDeleteId(t._id);
                     setShowDelete(true);

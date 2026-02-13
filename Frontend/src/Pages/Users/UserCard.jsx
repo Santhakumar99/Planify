@@ -1,6 +1,6 @@
 import React from "react";
 import "./UserCard.css";
-import { FaPhone, FaEnvelope, FaEdit, FaTrash } from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaEdit, FaTrash,FaUser } from "react-icons/fa";
 
 const UserCard = ({ user, onEdit, onDelete }) => {
     return (
@@ -23,23 +23,25 @@ const UserCard = ({ user, onEdit, onDelete }) => {
 
             {/* RIGHT: Info */}
             <div className="uc-right">
-                <h3 className="uc-name">{user.name}</h3>
-                <p className="uc-username">@{user.email.split("@")[0]}</p>
-                <p className="uc-company">{user.role || "User"}</p>
+                {/* <h3 className="uc-name">{user.name}</h3> */}
+                {/* <p className="uc-username">@{user.email.split("@")[0]}</p> */}
+                {/* <p className="uc-company">{user.role || "User"}</p> */}
 
                 {/* SPLIT SECTION */}
                 <div className="uc-split">
                     {/* LEFT SIDE: Contact Info */}
                     <div className="uc-contact">
                         <div className="uc-row">
-                            {/* <FaPhone className="uc-icon" /> */}
-                            {/* <span>{user.mobile || "+91 00000 00000"}</span> */}
-                            <h3 className="uc-name">{user.name}</h3>
+                            <h2 className="uc-name">{user.name}</h2>
                         </div>
 
                         <div className="uc-row">
                             <FaEnvelope className="uc-icon" />
                             <span>{user.email}</span>
+                        </div>
+                        <div className="uc-row">
+                            <FaUser className="uc-icon" />
+                            <span>{user.role}</span>
                         </div>
                     </div>
 

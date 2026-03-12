@@ -30,7 +30,7 @@ const Registration = () => {
     initialValues: {
       name: "",
       email: "",
-      role: "",
+      role: "employee",
       password: "",
     },
     validationSchema: RegisterSchema,
@@ -98,24 +98,6 @@ const Registration = () => {
             />
             {formik.touched.email && formik.errors.email && (
               <small className="register-error">{formik.errors.email}</small>
-            )}
-          </div>
-
-          {/* ROLE */}
-          <div className="register-input-group">
-            <select
-              name="role"
-              value={formik.values.role}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            >
-              <option value="">Select Role</option>
-              <option value="admin">Admin</option>
-              <option value="manager">Manager</option>
-              <option value="employee">Employee</option>
-            </select>
-            {formik.touched.role && formik.errors.role && (
-              <small className="register-error">{formik.errors.role}</small>
             )}
           </div>
 

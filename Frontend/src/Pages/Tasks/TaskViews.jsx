@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../Tasks/TaskView.css";
+import "./TaskView.css"
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { formatDate } from "../CommonComponents/DateFormat.jsx";
